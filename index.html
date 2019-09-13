@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .red {
+        color: red;
+      }
+      .green {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-if="status">{{ titulo }}</h1>
+
+      <ul>
+        <li v-for="item in Linguagens">
+          {{ item.nome, item.id}} // {{ item.id }}
+        </li>
+      </ul>
+      <input type="text" v-model="nome" /><br />
+      {{ nome }}
+      <img v-bind:src="imagem" alt="" />
+      <p :class="classHtml">Testando Classe</p>
+      <button type="button" :class="btnClassLimpar">Limpar</button>
+
+      <button type="button" :class="btnClassEnviar" v-on:click.right="enviar()">
+        Enviar
+      </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          btnClassLimpar: {
+            "btn-danger": false,
+            "btn-sm": true
+          },
+          btnClassEnviar: "btn-primary",
+
+          classHtml: "green",
+          imagem:
+            "https://knowledge.wharton.upenn.edu/wp-content/uploads/2016/01/compassion.jpg",
+          titulo: "Hello World",
+          status: true,
+          nome: "",
+
+          Linguagens: [
+            { nome: "Java", id: 1 },
+            { nome: "Python", id: 2 },
+            { nome: "PHP", id: 3 },
+            { nome: "C#", id: 4 }
+          ],
+          firstName: "Jhon",
+          lastName: "Henrique Granzeol",
+          fullName: ""
+        },
+
+        methods: {
+          enviar() {
+            alert("Enviado");
+          }
+        },
+
+        computed: {},
+
+        watch: {
+          firstName(newValue) {
+            this.fullName = newValue + " " + this.lastName;
+          },
+
+          lastName(newValue) {
+            this.fullName = this.firstName + "" + newValue;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<!-- Link Video
+    https://www.youtube.com/watch?v=yl2LC3uNs3Y&list=PLcoYAcR89n-qq1vGRbaUiV6Q9puy0qigW&index=10
+-->
