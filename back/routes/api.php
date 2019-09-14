@@ -13,4 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-
+Route::post('users', 'UserController@store');
+Route::get('users/{user}', 'UserController@show');
+Route::delete('users/{user}', 'UserController@delete');
