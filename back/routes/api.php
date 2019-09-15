@@ -12,9 +12,18 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::prefix('users')->group(function() {
+    Route::post('', 'UserController@store');
+    Route::get('/{user}', 'UserController@show');
+    Route::delete('/{user}', 'UserController@delete');
+});
 
-Route::post('users', 'UserController@store');
-Route::get('users/{user}', 'UserController@show');
-Route::delete('users/{user}', 'UserController@delete');
+
+Route::prefix('teams')->group(function() {
+    Route::post('', 'TeamController@store');
+    Route::get('{team}', 'TeamController@show');
+    Route::delete('{team}', 'TeamController@delete');
+    Route::put('{team}', 'TeamController@update');
+});
 
 Route::get('participants', 'ParticipantController@index');
